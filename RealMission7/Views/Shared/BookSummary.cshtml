@@ -1,0 +1,34 @@
+﻿
+@{
+}
+@model Books
+
+<div class="card card-outline-primary m-1 p-1">
+    <div class="bg-light p-1">
+        <h3>
+            @Model.Title
+            <span class="badge badge-pill badge-primary" style="float:right">
+                <small>Price: @Model.Price</small>
+            </span>
+        </h3>
+    </div>
+
+
+    <div class="card-text p-1">Written By: @Model.Author</div>
+    <div class="card-text p-1">Published By: @Model.Publisher</div>
+    <div class="card-text p-1">ISBN: @Model.Isbn</div>
+    <div class="card-text p-1">Classification: @Model.Classification</div>
+    <div class="card-text p-1">Category: @Model.Category</div>
+    <div class="card-text p-1">Number of Pages: @Model.PageCount</div>
+
+    <form method="post" asp-page="/Buy">
+
+        <input type="hidden" asp-for="@Model.BookId" />
+        <input type="hidden" name="returnUrl" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+
+
+        <span class="card-text">
+            <button type="submit" class="btn btn-success btn-small float-right">Buy</button>
+        </span>
+    </form>
+</div>
