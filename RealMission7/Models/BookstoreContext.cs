@@ -20,6 +20,7 @@ namespace RealMission7.Models
         }
 
         public virtual DbSet<Books> Books { get; set; }
+        public virtual DbSet<Pay> Payment { get; set; }
 
     }   
 }
