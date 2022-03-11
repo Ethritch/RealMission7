@@ -8,18 +8,21 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RealMission7.Models
 {
-    public partial class Books
+    public partial class Book
     {
         [Key]
         [Required]
         public int BookId { get; set; }
+        [Required(ErrorMessage = "Book Must Have A Title")]
         public string Title { get; set; }
+        [Required(ErrorMessage = "Book Must Have A Author")]
         public string Author { get; set; }
         public string Publisher { get; set; }
         public string Isbn { get; set; }
         public string Classification { get; set; }
         public string Category { get; set; }
         public int PageCount { get; set; }
+        [Required(ErrorMessage = "Book Must Have A Price")]
         public double Price { get; set; }
     }
 }

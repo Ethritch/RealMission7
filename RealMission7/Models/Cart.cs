@@ -11,7 +11,7 @@ namespace RealMission7.Models
 
         public List<CartLineItem> Items { get; set; } = new List<CartLineItem>();
 
-        public virtual void AddItem (Books book, int qty)
+        public virtual void AddItem (Book book, int qty)
         {
             CartLineItem line = Items
                 .Where(b => b.Book.BookId == book.BookId)
@@ -31,7 +31,7 @@ namespace RealMission7.Models
             }
         }
 
-        public virtual void RemoveItem (Books book)
+        public virtual void RemoveItem (Book book)
         {
             Items.RemoveAll(x => x.Book.BookId == book.BookId);
         }
@@ -52,7 +52,7 @@ namespace RealMission7.Models
     { 
         [Key]
         public int LineID { get; set; }
-        public Books Book { get; set; }
+        public Book Book { get; set; }
         public int Quantity { get; set; }
     }
 

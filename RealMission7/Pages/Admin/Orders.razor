@@ -1,0 +1,39 @@
+﻿@page "/admin/orders"
+@inherits OwningComponentBase<IPayRepository>
+
+<OrderTable TableTitle="UnShipped Orders" Orders="UnShippedOrders" ButtonLabel="Shipped" OrderSelected="ShipOrder"></OrderTable>
+
+<OrderTable TableTitle="Shipped Orders" Orders="ShippedOrders" ButtonLabel="Reset" OrderSelected="ResetOrder"></OrderTable>
+
+<button class="btn btn-info" @onclick="@(x => UpdateData())">Refresh Data</button>
+
+@code {
+
+    public IPayRepository repo => Service;
+
+    public IEnumerable<Pay> AllOrders { get; set; }
+    public IEnumerable<Pay> UnShippedOrders { get; set; }
+    public IEnumerable<Pay> ShippedOrders { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+
+    public async Task UpdateData()
+    {
+        AllOrders = await repo.Payment.ToListAsync();
+        UnShippedOrders = AllOrders.Where(x => !x.OrderShipped);
+        ShippedOrders = AllOrders.Where(x => x.OrderShipped);
+    }
+
+    public void ShipOrder(int id) => UpdateOrder(id, true);
+    public void ResetOrder(int id) => UpdateOrder(id, false);
+
+    private void UpdateOrder(int id, bool shipped)
+    {
+        Pay p = repo.Payment.FirstOrDefault(x => x.PaymentId == id);
+        p.OrderShipped = shipped;
+        repo.SavePayment(p);
+    }
+}

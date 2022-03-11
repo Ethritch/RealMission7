@@ -31,7 +31,7 @@ namespace RealMission7.Pages
 
         public IActionResult OnPost(int bookId, string returnUrl)
         {
-            Books b = repo.Books.FirstOrDefault(x => x.BookId == bookId);
+            Book b = repo.Books.FirstOrDefault(x => x.BookId == bookId);
 
             cart.AddItem(b, 1);
 

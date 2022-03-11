@@ -1,25 +1,25 @@
 ﻿
 @{
 }
-@model Books
+@model Book
 
-<div class="card card-outline-primary m-1 p-1">
+<div class="card card-outline-primary m-1 p-1 bg-primary">
     <div class="bg-light p-1">
         <h3>
             @Model.Title
-            <span class="badge badge-pill badge-primary" style="float:right">
+            <span class="badge badge-pill badge-warning" style="float:right">
                 <small>Price: @Model.Price</small>
             </span>
         </h3>
     </div>
 
 
-    <div class="card-text p-1">Written By: @Model.Author</div>
-    <div class="card-text p-1">Published By: @Model.Publisher</div>
-    <div class="card-text p-1">ISBN: @Model.Isbn</div>
-    <div class="card-text p-1">Classification: @Model.Classification</div>
-    <div class="card-text p-1">Category: @Model.Category</div>
-    <div class="card-text p-1">Number of Pages: @Model.PageCount</div>
+    <div class="card-text p-1 border-top">Written By: @Model.Author</div>
+    <div class="card-text p-1 border-top">Published By: @Model.Publisher</div>
+    <div class="card-text p-1 border-top">ISBN: @Model.Isbn</div>
+    <div class="card-text p-1 border-top">Classification: @Model.Classification</div>
+    <div class="card-text p-1 border-top">Category: @Model.Category</div>
+    <div class="card-text p-1 border-top border-bottom">Number of Pages: @Model.PageCount</div>
 
     <form method="post" asp-page="/Buy">
 
